@@ -1,0 +1,37 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "connect-mongodb-session": "^2.4.1",
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "cors": "^2.8.5",
+    "express-session": "^1.17.1",
+    "mongojs": "^3.1.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "telegram-bot-api": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts":{
+    "start":"node index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yvkrishna/Web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yvkrishna/Web/issues"
+  },
+  "homepage": "https://github.com/yvkrishna/Web#readme"
+}
