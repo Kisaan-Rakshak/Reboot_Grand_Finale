@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<style>
+	*{
+		margin:0;
+		padding:0;
+		font-family:sans-serif;
+	}
+	body{
+		font-family: "Dosis",sans-serif;
+	}
+	.action{
+		position: fixed;
+		top:20px;
+		right:30px;
+	}
+	.action .profile{
+		position: relative;
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		overflow: hidden;
+		cursor:pointer;
+	}
+	.action .profile img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.action .menu{
+		position: absolute;
+		top: 120px;
+		right:-10px;
+		padding: 10px 20px;
+		background:#afbd22;
+		width: 200px;
+		box-sizing: 0 5px 5px rgba(0,0,0,0.1);
+		border-radius:15px;
+		transition: 0.5s;
+		visibility: hidden;
+		opacity: 0;
+	}
+	.action .menu.active{
+		top: 80px;
+		visibility: visible;
+		opacity: 1;
+	}
+	.topBar{
+		height: 90px;
+    	background: #5995fd;
+	}
+	.action .menu::before{
+		content: '';
+		position: absolute;
+		top: -6px;
+		right: 28px;
+		width: 20px;
+		height: 20px;
+		background: #afbd22;
+		transform: rotate(45deg);  
+	}
+	.action .menu h3{
+		width: 100%;
+		text-align: center;
+		font-size: 18px;
+		padding:20px 0;
+		font-weight: 500;
+		font-size: 18px;
+		color:#fff;
+		line-height: 1.2em;
+	}
+	.action .menu h3 span{
+		font-size: 14px;
+		color:400;
+		font-weight: 400;
+	}
+	.sidenav {
+		height: 100%;
+		width: 0;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background-color: #afbd22;
+		overflow-x: hidden;
+		transition: 0.5s;
+		padding-top: 60px;
+	  }
+	  
+	  .sidenav a {
+		padding: 8px 8px 8px 32px;
+		text-decoration: none;
+		font-size: 25px;
+		color: #fff;
+		display: block;
+		transition: 0.3s;
+	  }
+	  
+	  .sidenav a:hover {
+		color: steelblue;
+	  }
+	  
+	  .sidenav .closebtn {
+		position: absolute;
+		top: 0;
+		right: 25px;
+		font-size: 36px;
+		margin-left: 50px;
+	  }
+	  @media screen and (max-height: 450px) {
+		.sidenav {padding-top: 15px;}
+		.sidenav a {font-size: 18px;}
+	  }
+	.action .menu ul li{
+		list-style: none;
+		padding:10px 0;
+		border-top:1px solid rgba(0,0,0,0.05);
+		direction: flex;
+		align-items: center;
+	}
+	.action .menu ul li img{
+		max-width: 20px;
+		margin-right: 10px;
+		opacity: 0.5;
+		transition: 0.5s;
+	} 
+	.action .menu ul li:hover img{
+		opacity:1;
+	}
+	.action .menu ul li a{
+		display: inline-block;
+		text-decoration: none;
+		color:#fff;
+		font-weight: 500;
+		transition: 0.5s;
+	}
+	.action .menu ul li:hover a{
+		color: steelblue
+	}
+	.card{
+		background: #fff;
+		color: #425066;
+		overflow:hidden ;
+	}
+	
+	.card-img-top{
+		width: 101%;
+		margin-left: -2px;
+		margin-top: -2px;
+	}
+	.card:hover .card-img-top{
+		transition:.3s ease-out 0s;
+		transform: scale(1.1);
+	}
+	.btn-gosomewhere{
+		width: 150px;
+		background-color: #f0ad4e;
+		border: none;
+		outline: none;
+		height: 49px;
+		border-radius: 49px;
+		color: #fff;
+		text-transform: uppercase;
+		font-weight: 600;
+		margin: 10px 0;
+		cursor: pointer;
+		transition: 0.5s;
+	  }
+	  
+	  .btn-gosomewhere:hover {
+		background-color: #f0ad4e;
+	  }
+	  #usrwlcm{
+		margin-top: 14px;
+		font-family: 'Dosis',sans-serif;
+		font-size: 37px;
+		color: #fff;
+	  }
+</style>
+<body>
+	<div class="topBar d-flex justify-content-center">
+		<div class="nav-bar" style="padding: 20px;">
+			<div id="mySidenav" class="sidenav">
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<a href="#">About</a>
+				<a href="/">Dashboard</a>
+				<a href="#">Your Account</a>
+				<a href="#">Contact Us</a>
+				<a href="#">Logout</a>
+			</div>
+			<span style="font-size:30px;cursor:pointer;margin-left: 15px;position: absolute;left: 0;" onclick="openNav()">&#9776;</span>
+		</div>
+		<div class="WelcomeMsg">
+			<p id="usrwlcm"></p>
+		</div>
+		<div class="action">
+			<div class="profile" onclick="menuToggle()">
+				<img src="userman.png" alt="userImage" />
+			</div>
+			<div class="menu">
+				<h3>Someone Famous<br><span>Website Designer</span></h3>
+				<ul style="padding-left: 0;">
+					<li><img src="user.png" alt="profile" /><a href="/myProfile">My Profile</a></li>
+					<li><img src="hardware.png" alt="edit" /><a href="/myHardware">My Hardware</a></li>
+					<li><img src="settings.png" alt="settings" /><a href="#">Settings</a></li>
+					<li><img src="log-out.png" alt="logout" /><a href="/signout">Log out</a></li>
+				</ul>
+			</div>
+		</div>
+		</div><br><br>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-1 col-sm-1 col-1"></div>
+				<div class="col-md-10 col-md-10 col-10">
+					<div class="row">
+						<div class="col-md-3 col-sm-7 col-12">
+							<div class="card" style="width: 16rem;">
+								<img src="https://miro.medium.com/max/902/1*CPSTzfUTCCpUbllyiPvl_A.jpeg" class="card-img-top" alt="...">
+								<div class="card-body">
+								  <h5 class="card-title">Explore Sensor<br>Plots</h5>
+								  <p class="card-text">Visualize various plots of your sensors. Check How Machine Learning can help you in your cultivation.</p>
+								  <a href="/sensorsGraph"><input type="button" class="btn-gosomewhere btn btn-warning" value="Explore" /></a>
+								</div>
+							  </div>
+						</div>
+						<div class="col-md-1 col-sm-1"></div>
+						<!-- <div class="col-md-3 col-sm-7 col-12">
+							<div class="card" style="width: 16rem;">
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR_Ny3fKOdWU1oGEyYOGYM9TQ8Ed2PN62DZQ&usqp=CAU" class="card-img-top" alt="...">
+								<div class="card-body">
+								  <h5 class="card-title">Explore Satellite<br>Maps</h5>
+								  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+								  <a href="#" class="btn btn-primary">Go somewhere</a>
+								</div>
+							  </div>
+						</div> -->
+						<div class="col-md-1 col-sm-1"></div>
+						<div class="col-md-3 col-sm-7 col-12">
+							<div class="card" style="width: 16rem;">
+								<img src="https://repository-images.githubusercontent.com/263014421/9f135300-945b-11ea-9641-c7213676d8d5" class="card-img-top" alt="...">
+								<div class="card-body">
+								  <h5 class="card-title">Predict leaf Diseases</h5>
+								  <p class="card-text">Checks for any disease present in the plant leaves and informs you about the corrective measures to be taken.</p>
+								  <a href="/diseaseprediction"><input type="button" class="btn-gosomewhere btn btn-warning" value="Explore" /></a>
+								</div>
+							  </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-1 col-sm-1 col-1"></div>
+			</div>
+		</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+	<script>
+		function openNav() {
+		  document.getElementById("mySidenav").style.width = "200px";
+		}
+		
+		function closeNav() {
+		  document.getElementById("mySidenav").style.width = "0";
+		}
+		</script>
+	<script>
+		function menuToggle(){
+			const toggleMenu = document.querySelector(".menu");
+			toggleMenu.classList.toggle('active');
+		}
+	</script>
+	<script>
+		var user_data = <%- JSON.stringify(data.data.username) %>
+		console.log(user_data);
+		document.getElementById("usrwlcm").innerHTML = "welcome "+user_data;
+	</script>
+</body>
+</html>
